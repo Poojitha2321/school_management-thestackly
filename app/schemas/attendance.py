@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date as Date
 from typing import Optional
 
 from pydantic import BaseModel
@@ -7,7 +7,7 @@ from pydantic import BaseModel
 class AttendanceBase(BaseModel):
     student_id: int
     course_id: int
-    date: date
+    date: Date
     status: str
 
 
@@ -18,7 +18,7 @@ class AttendanceCreate(AttendanceBase):
 class AttendanceUpdate(BaseModel):
     student_id: Optional[int] = None
     course_id: Optional[int] = None
-    date: Optional[date] = None
+    date: Optional[Date] = None
     status: Optional[str] = None
 
 

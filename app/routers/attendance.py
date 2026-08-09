@@ -17,12 +17,16 @@ from app.services.attendance_service import (
     remove_attendance,
 )
 
+
 router = APIRouter(
     prefix="/attendance",
     tags=["Attendance"]
 )
 
 
+# =========================
+# CREATE ATTENDANCE
+# =========================
 @router.post("/", response_model=AttendanceResponse)
 def create_attendance(
     attendance: AttendanceCreate,
@@ -31,6 +35,9 @@ def create_attendance(
     return mark_attendance(db, attendance)
 
 
+# =========================
+# GET ALL ATTENDANCE
+# =========================
 @router.get("/", response_model=list[AttendanceResponse])
 def get_attendance(
     db: Session = Depends(get_db)
@@ -38,6 +45,9 @@ def get_attendance(
     return get_all_attendance(db)
 
 
+# =========================
+# GET ATTENDANCE BY ID
+# =========================
 @router.get("/{attendance_id}", response_model=AttendanceResponse)
 def get_attendance_by_id(
     attendance_id: int,
@@ -57,6 +67,9 @@ def get_attendance_by_id(
     return attendance
 
 
+# =========================
+# UPDATE ATTENDANCE
+# =========================
 @router.put("/{attendance_id}", response_model=AttendanceResponse)
 def update_attendance(
     attendance_id: int,
@@ -78,6 +91,9 @@ def update_attendance(
     return updated_attendance
 
 
+# =========================
+# DELETE ATTENDANCE
+# =========================
 @router.delete("/{attendance_id}")
 def delete_attendance(
     attendance_id: int,

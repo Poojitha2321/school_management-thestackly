@@ -1,4 +1,6 @@
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
+
 from app.database import Base
 
 
@@ -14,3 +16,8 @@ class Teacher(Base):
     subject = Column(String(100))
     qualification = Column(String(100))
     experience = Column(Integer)
+
+    courses = relationship(
+        "Course",
+        back_populates="teacher"
+    )
